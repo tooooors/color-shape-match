@@ -4,6 +4,10 @@ Color Shape Match は、React と TypeScript で作成された Web アプリケ
 
 ※ このアプリは AI ツール（KIRO）を使用して開発されました
 
+
+<img width="1181" height="807" alt="スクリーンショット 2025-09-07 215323" src="https://github.com/user-attachments/assets/49cc1456-99d4-4a87-af81-298115aea171" />
+
+
 ## 主な機能
 
 - 色と形のマッチングゲーム
