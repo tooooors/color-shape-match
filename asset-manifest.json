@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/color-shape-match.git/static/css/main.448f42f5.css",
+    "main.js": "/color-shape-match.git/static/js/main.1c185297.js",
+    "index.html": "/color-shape-match.git/index.html",
+    "main.448f42f5.css.map": "/color-shape-match.git/static/css/main.448f42f5.css.map",
+    "main.1c185297.js.map": "/color-shape-match.git/static/js/main.1c185297.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.448f42f5.css",
+    "static/js/main.1c185297.js"
+  ]
+}
