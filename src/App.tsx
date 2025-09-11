@@ -6,6 +6,7 @@ interface GameItem {
   color: string;
   shape: string;
   matched: boolean;
+  hidden: boolean;
 }
 
 const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
@@ -41,6 +42,7 @@ const App: React.FC = () => {
         color: color,
         shape: shape,
         matched: false,
+        hidden: false,
       });
 
       items.push({
@@ -48,6 +50,7 @@ const App: React.FC = () => {
         color: color,
         shape: shape,
         matched: false,
+        hidden: false,
       });
     }
 
@@ -73,15 +76,24 @@ const App: React.FC = () => {
 
   // アイテムクリック処理
   const handleItemClick = (id: number) => {
-    if (selectedItems.includes(id) || gameItems[id].matched) return;
+    const clickedItem = gameItems.find((item) => item.id === id);
+    if (
+      !clickedItem ||
+      selectedItems.includes(id) ||
+      clickedItem.matched ||
+      clickedItem.hidden
+    )
+      return;
 
     const newSelected = [...selectedItems, id];
     setSelectedItems(newSelected);
 
     if (newSelected.length === 2) {
       const [first, second] = newSelected;
-      const firstItem = gameItems[first];
-      const secondItem = gameItems[second];
+      const firstItem = gameItems.find((item) => item.id === first);
+      const secondItem = gameItems.find((item) => item.id === second);
+
+      if (!firstItem || !secondItem) return;
 
       const isMatch =
         gameMode === "color"
@@ -101,18 +113,26 @@ const App: React.FC = () => {
           setScore((prev) => prev + 10);
           setSelectedItems([]);
 
-          // 全てマッチしたかチェック
-          const updatedItems = gameItems.map((item) =>
-            item.id === first || item.id === second
-              ? { ...item, matched: true }
-              : item
-          );
+          // マッチしたアイテムを非表示にする
+          setTimeout(() => {
+            setGameItems((prev) => {
+              const updatedItems = prev.map((item) =>
+                item.id === first || item.id === second
+                  ? { ...item, hidden: true }
+                  : item
+              );
 
-          if (updatedItems.every((item) => item.matched)) {
-            setTimeout(() => {
-              setLevel((prev) => prev + 1);
-            }, 1000);
-          }
+              // 全てのアイテムが非表示になったかチェック
+              const visibleItems = updatedItems.filter((item) => !item.hidden);
+              if (visibleItems.length === 0) {
+                setTimeout(() => {
+                  setLevel((prevLevel) => prevLevel + 1);
+                }, 500);
+              }
+
+              return updatedItems;
+            });
+          }, 800);
         }, 500);
       } else {
         // マッチしなかった場合
@@ -164,8 +184,13 @@ const App: React.FC = () => {
               key={item.id}
               className={`game-item ${item.shape} ${
                 selectedItems.includes(item.id) ? "selected" : ""
-              } ${item.matched ? "matched" : ""}`}
-              style={{ backgroundColor: item.color }}
+              } ${item.matched ? "matched" : ""} ${
+                item.hidden ? "hidden" : ""
+              }`}
+              style={{
+                backgroundColor: item.color,
+                visibility: item.hidden ? "hidden" : "visible",
+              }}
               onClick={() => handleItemClick(item.id)}
             >
               <div className="item-content">
