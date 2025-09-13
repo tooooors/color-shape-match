@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/color-shape-match/static/css/main.448f42f5.css",
-    "main.js": "/color-shape-match/static/js/main.1c185297.js",
+    "main.css": "/color-shape-match/static/css/main.5f2c9732.css",
+    "main.js": "/color-shape-match/static/js/main.0df37228.js",
     "index.html": "/color-shape-match/index.html",
-    "main.448f42f5.css.map": "/color-shape-match/static/css/main.448f42f5.css.map",
-    "main.1c185297.js.map": "/color-shape-match/static/js/main.1c185297.js.map"
+    "main.5f2c9732.css.map": "/color-shape-match/static/css/main.5f2c9732.css.map",
+    "main.0df37228.js.map": "/color-shape-match/static/js/main.0df37228.js.map"
   },
   "entrypoints": [
-    "static/css/main.448f42f5.css",
-    "static/js/main.1c185297.js"
+    "static/css/main.5f2c9732.css",
+    "static/js/main.0df37228.js"
   ]
 }
